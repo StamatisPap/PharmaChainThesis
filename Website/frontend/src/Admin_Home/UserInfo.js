@@ -3,9 +3,9 @@ import { Card, Col } from "react-bootstrap";
 const userImage = require("../Assets/userImage.png");
 
 class UserInfo extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   render() {
     return (
       <Col sm={4} className="pl-0">

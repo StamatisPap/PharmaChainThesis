@@ -136,7 +136,7 @@ class RequestCard extends Component {
   };
 
   render() {
-    if (this.state.userList.length || this.state.errorMsg && this.state.isAdmin != "") {
+    if (this.state.userList.length || this.state.errorMsg && this.state.isAdmin === "yes") {
       return (
         <div>
           <AdminNav homeUrl="/Admin" notifUrl="/admin/request" history={this.props.history}/>

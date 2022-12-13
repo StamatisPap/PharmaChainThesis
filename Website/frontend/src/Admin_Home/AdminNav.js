@@ -3,7 +3,6 @@ import { Navbar, Nav } from "react-bootstrap";
 import { FiLogOut } from "react-icons/fi";
 import "./Admin_Home.css";
 import AuthService from "../AuthService/AuthService.js";
-import supplychain from "../supplychain";
 import web3 from "../web3";
 import swal from "sweetalert";
 // import withAuthAdmin from "../withAuthAdmin";
@@ -16,7 +15,6 @@ const notification = require("../Assets/notification.png");
 class AdminNav extends Component {
   constructor(props) {
     super();
-    // const Auth = new AuthService();
     this.Auth = new AuthService();
     this.state = {
       user: null,

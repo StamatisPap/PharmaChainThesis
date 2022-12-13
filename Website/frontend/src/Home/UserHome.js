@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
-import AdminNav from "../Admin_Home/AdminNav";
 import web3 from "../web3";
 import swal from "sweetalert";
 import { GoPlus, GoSearch } from "react-icons/go";
@@ -10,11 +9,10 @@ import AuthService from "../AuthService/AuthService";
 import Transactions from "../Manufacturer/Transactions";
 
 class UserHome extends Component {
-  UNSAFE_componentWillMount() {
-    this.updateLoginAccountStatus();
 
-    //this.getTrans();
-    //this.getNotifs();
+  UNSAFE_componentWillMount() {
+
+    this.updateLoginAccountStatus();
     this.getMaxId();
     this.Auth.fetch("http://localhost:5000/api/getuser", {
       method: "POST",
@@ -253,7 +251,6 @@ class UserHome extends Component {
     this.getTrans();
     this.hideSellMedicine();
     this.hideMedicine();
-    // alert("Please accept the transaction in metamask and reject if any error")
     swal({
       title: "Please Note",
       text: "Please accept the transaction in metamask and reject if any error",
@@ -261,19 +258,16 @@ class UserHome extends Component {
       dangerMode: true,
     }).then((willDelete) => {
       this.setState({ loading: true });
-      const a = web3.eth
+      web3.eth
         .getAccounts()
         .then((r) => {
-          // console.log(r[0]);
-          // console.log(this.state.typeofuser)
+  
           if (this.state.typeofuser === "Manufacturer") {
             var date = new Date();
-            // console.log(Number(this.state.expire))
             date.setDate(date.getDate() + Number(this.state.expire));
-            // console.log(date);
             var dst = date.toString();
            
-              const am = supplychain.methods
+              supplychain.methods
                 .setmed(
                   this.state.medname,
                   this.state.maxeid,
@@ -308,36 +302,32 @@ class UserHome extends Component {
                     }),
                   })
                     .then((res) => {
-                      // console.log(res)
+                      
                       this.setState({ loading: false });
-                      // console.log(this.state)
+                      
                       window.location.reload();
                     })
                     .catch((err) => {
-                      // console.log(err)
+                     
                     });
                 })
                 .catch((err) => {
-                  // console.log(err)
+                  console.log(err)
                   this.setState({ loading: false });
                 });
-            
-         
-
-            // I'm deliberately missing gas option here
-            // const data = await contract.methods.myMethod().send({ from: account, gasPrice });
+          
           }
+
           if (this.state.typeofuser === "Distributer") {
+
             let id = this.state.id;
-            // console.log(id)
-            const am = supplychain.methods
+            supplychain.methods
               .setdistdetails(this.state.to, this.state.sid, this.state.eid)
               .send({
                 from: r[0],
               })
               .then((re) => {
-                // console.log("this is very good", re)
-                // console.log(re.transactionHash)
+              
                 this.Auth.fetch("http://localhost:5000/api/setdist", {
                   method: "POST",
                   body: JSON.stringify({
@@ -381,7 +371,7 @@ class UserHome extends Component {
           }
           if (this.state.typeofuser === "Retailer") {
             let id = this.state.id;
-            const am = supplychain.methods
+            supplychain.methods
               .sell(this.state.sid)
               .send({
                 from: r[0],

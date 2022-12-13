@@ -54,7 +54,7 @@ class UserCard extends Component {
         });
       })
       .catch((err) => {
-        // console.log(err)
+        console.log(err)
       });
   };
 
@@ -76,7 +76,8 @@ class UserCard extends Component {
     if (this.state.displayUserList >=0) {
       return (
         <div className="container mt-5 tabs-container">
-          <a
+          <a 
+            href="!#"
             className="type-container"
             onClick={(event) => this.getTypeOfUser("All")}
           >
@@ -84,6 +85,7 @@ class UserCard extends Component {
             <span className="mr-5">ALL</span> {this.state.userList.length}
           </a>
           <a
+            href="!#"
             className="type-container"
             onClick={(event) => this.getTypeOfUser("Manufacturer")}
           >
@@ -91,6 +93,7 @@ class UserCard extends Component {
             <span className="mr-5">Manufacturer</span> {this.state.manuc}
           </a>
           <a
+            href="!#"
             className="type-container"
             onClick={(event) => this.getTypeOfUser("Distributer")}
           >
@@ -98,6 +101,7 @@ class UserCard extends Component {
             <span className="mr-5">Distributers</span> {this.state.distc}
           </a>
           <a
+            href="!#"
             className="type-container"
             onClick={(event) => this.getTypeOfUser("Retailer")}
           >
@@ -119,6 +123,7 @@ class UserCard extends Component {
       return (
         <div className="container mt-5 tabs-container">
           <a
+            href="!#"
             className="type-container"
             onClick={(event) => this.getTypeOfUser("All")}
           >
@@ -126,6 +131,7 @@ class UserCard extends Component {
             <span className="mr-5">ALL</span> {this.state.userList.length}
           </a>
           <a
+            href="!#"
             className="type-container"
             onClick={(event) => this.getTypeOfUser("Manufacturer")}
           >
@@ -133,6 +139,7 @@ class UserCard extends Component {
             <span className="mr-5">Manufacturer</span> {this.state.manuc}
           </a>
           <a
+            href="!#"
             className="type-container"
             onClick={(event) => this.getTypeOfUser("Distributer")}
           >
@@ -140,6 +147,7 @@ class UserCard extends Component {
             <span className="mr-5">Distributers</span> {this.state.distc}
           </a>
           <a
+            href="!#"
             className="type-container"
             onClick={(event) => this.getTypeOfUser("Retailer")}
           >

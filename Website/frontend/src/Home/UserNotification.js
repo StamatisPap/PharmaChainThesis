@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Card, Col, Button } from "react-bootstrap";
-import AdminNav from "../Admin_Home/AdminNav";
 import web3 from "../web3";
 import swal from "sweetalert";
 import AuthService from "../AuthService/AuthService";
@@ -278,12 +277,12 @@ class UserNotification extends Component {
       dangerMode: true,
     }).then((willDe) => {
       this.setState({ loading: true });
-      const a = web3.eth
+      web3.eth
         .getAccounts()
         .then((r) => {
           // console.log(from)
           if (this.state.typeofuser === "Distributer") {
-            const am = supplychain.methods
+            supplychain.methods
               .acceptdist(sid, eid, from)
               .send({
                 from: r[0]
@@ -312,7 +311,7 @@ class UserNotification extends Component {
               });
           }
           if (this.state.typeofuser === "Retailer") {
-            const am = supplychain.methods
+            supplychain.methods
               .setretaildetails(sid, eid, from)
               .send({
                 from: r[0],
@@ -451,7 +450,7 @@ class UserNotification extends Component {
             date.setDate(date.getDate() + Number(this.state.expire));
             // console.log(date);
             var dst = date.toString();
-            const am = supplychain.methods
+            supplychain.methods
               .setmed(
                 this.state.medname,
                 this.state.maxeid,
@@ -558,7 +557,7 @@ class UserNotification extends Component {
           }
           if (this.state.typeofuser === "Retailer") {
             let id = this.state.id;
-            const am = supplychain.methods
+            supplychain.methods
               .sell(this.state.sid)
               .send({
                 from: r[0],
@@ -627,14 +626,10 @@ class UserNotification extends Component {
         .getAccounts()
         .then((r) => {
           console.log(r[0]);
-          // console.log(this.state.typeofuser)
           if (this.state.typeofuser === "Manufacturer") {
             var date = new Date();
-            // console.log(Number(this.state.expire))
             date.setDate(date.getDate() + Number(this.state.expire));
-            // console.log(date);
-            var dst = date.toString();
-            const am = supplychain.methods
+            supplychain.methods
               .sendmedtodistributor(
                 this.state.sid, this.state.eid, this.state.to
                 )
@@ -660,14 +655,10 @@ class UserNotification extends Component {
         .getAccounts()
         .then((r) => {
           console.log(r[0]);
-          // console.log(this.state.typeofuser)
-          {
+          
             var date = new Date();
-            // console.log(Number(this.state.expire))
             date.setDate(date.getDate() + Number(this.state.expire));
-            // console.log(date);
-            var dst = date.toString();
-            const am = supplychain.methods.destroymed(sid, eid)
+            supplychain.methods.destroymed(sid, eid)
               .send({from: r[0]})
               .then((re) => {
             
@@ -685,18 +676,15 @@ class UserNotification extends Component {
                     this.setState({ loading: false });
                     this.getNotifs();
                     this.setState({});
-                    // console.log(this.state)
                   })
                   .catch((err) => {
-                    // console.log(err)
+                    console.log(err)
                   });
               })
-          }
-          
-        }
-    )}
-  )}
-
+        })
+    })
+  }
+  
   render() {
     return (
       <>
